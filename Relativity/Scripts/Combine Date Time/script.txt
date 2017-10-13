@@ -1,0 +1,34 @@
+<script>
+	<name>Combine Date Time</name>
+	<description>This script combines a long text date value, and a long text time value into a Date/Time value</description>
+	<category>Case Functionality</category>
+	<input orientation="horizontal">
+		<field id="datetime" name="Output Date/Time field">
+			<filters>			          
+			          <type>2</type>
+     			</filters>
+		</field>
+		<field id="date" name="Long text Date field">
+			<filters>			          
+			          <type>4</type>
+     			</filters>
+		</field>
+		<field id="time" name="Long text Time field">
+					<filters>			          
+					          <type>4</type>
+		     			</filters>
+		</field>
+		<search id="search" name="Saved Search" />
+	</input>
+	<version>1.0</version>
+	<display type="itemlist" />
+	<action returns="status"><![CDATA[
+
+
+UPDATE EDDSDBO.[Document]
+SET
+[#datetime#] = CONVERT(DATETIME,[#date#] + ' ' + [#time#])  #search#
+
+
+]]></action>
+</script>
